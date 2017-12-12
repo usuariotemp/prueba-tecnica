@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Tus Chiros.com</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"
+	/>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+	<script src="js/pedido.js"></script>
+</head>
+
+<body>
+	<header class="container">
+		<h2>Header</h2>
+	</header>
+
+	<!-- Barra de navegación -->
+
+	<nav class="navbar navbar-inverse container-fluid navbar-fixed-top">
+		<div>
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				 aria-expanded="false">
+					<span class="sr-only">Navegación</span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">TusChiros.com</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="index.html">
+							<span class="glyphicon glyphicon-home"></span> Home</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="glyphicon glyphicon glyphicon-shopping-cart"></span> Haga su pedido aquí</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Contenido -->
+
+	<section class="container">
+		<div class="row">
+			<div class="col-md-12 content">
+				<div class="panel panel-primary">
+
+					<div class="panel-heading">
+						<h2 class="panel-title">
+							<b>Información requerida para su pedido</b>
+						</h2>
+					</div>
+
+					<div class="panel-body">
+						<nav class="navbar navbar-inverse">
+							<div class="container-fluid">
+								<div class="navbar-header">
+									<span class="navbar-brand">Escoja su ropa </span>
+								</div>
+								<ul id="listaTipoProducto" class="nav navbar-nav">
+									<li class="active">
+										<a id="1" href="#">Camisas Formales</a>
+									</li>
+									<li>
+										<a id="2" href="#">Pantalones Formales</a>
+									</li>
+									<li>
+										<a id="3" href="#">Chaquetas</a>
+									</li>
+								</ul>
+								<form id="formBusqueda" class="navbar-form navbar-left" action="#">
+									<div class="input-group">
+										<input id="inputBusqueda" type="text" class="form-control" placeholder="Buscar" name="search">
+									</div>
+
+								</form>
+							</div>
+						</nav>
+
+						<!-- Tabla para mostrar los productos que se pueden comprar -->
+
+						<br>
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Producto</th>
+									<th>Precio</th>
+								</tr>
+							</thead>
+							<tbody id="tablaProductos">
+							</tbody>
+						</table>
+
+						<!-- Panel para mostrar los productos seleccionados -->
+
+						<div id="seccionProductosSeleccionados">
+							<h4>Estos son los productos que ha seleccionado</h4>
+							<span>
+								<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#formularioEnvio">Enviar Pedido</button>
+							</span>
+
+							<ul id="listaProductosSeleccionados" class="list-group">
+							</ul>
+						</div>
+					</div>
+
+
+					<!-- Diálogo para mensajes -->
+					<div class="modal fade" id="dialogo" role="dialog">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Oops !!</h4>
+								</div>
+								<div id="dialogoMensaje" class="modal-body">
+									<p>Mensaje</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="formularioEnvio" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Información adicional para completar el pedido</h4>
+								</div>
+
+								<div class="modal-body">
+									<form role="form" id="newModalForm" method="POST">
+										<div class="form-group">
+											<label class="control-label col-md-3" for="nombre">Nombre:</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" require/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3" for="tipoIdentificacion">Tipo de Identificación:</label>
+											<div class="col-md-9 selectContainer">
+													<select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion">
+													</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3" for="identificacion">Identificación:</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="Identificación" require>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<br>
+											<button type="submit" class="btn btn-primary" id="btnSaveIt">Enviar</button>
+											<button type="button" class="btn btn-default" id="btnCloseIt" data-dismiss="modal">Cancelar</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-xs-10">
+								<h4>Valor total del pedido:</h4>
+							</div>
+							<div id="valorTotalPedido" class="col-xs-2">
+								<h4>0</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
